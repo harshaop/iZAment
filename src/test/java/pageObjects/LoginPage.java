@@ -5,28 +5,28 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage extends BasePage {
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
+    private final By emailFieldById = By.id("email1");
+    private final By submitButtonById = By.id("submitBtn");
+    private final By pwdFieldById = By.id("password");
+
     public void enterEmailId(String emailId) {
-        WebElement emailField = waitUntilVisible(By.id("email"));
-        emailField.clear();
-        emailField.sendKeys(emailId);
+        WebElement email = waitUntilVisible(emailFieldById);
+        email.clear();
+        email.sendKeys(emailId);
     }
 
     public void clickSubmitBtn() {
-        WebElement submitBtn = waitUntilClickable(By.id("submitBtn"));
+        WebElement submitBtn = waitUntilClickable(submitButtonById);
         submitBtn.click();
     }
 
-    public void enterPassword(String password) throws InterruptedException {
-        WebElement passwordField = waitUntilVisible(By.id("password"));
-        Thread.sleep(1000);
-        passwordField.sendKeys(password);
-    }
-
-    public boolean isLoaded() {
-        return true; //TODO
+    public void enterPassword(String password) {
+        WebElement pwdField = waitUntilVisible(pwdFieldById);
+        pwdField.sendKeys(password);
     }
 }

@@ -16,6 +16,7 @@ public class AccountSettingsPage extends BasePage {
     By oldPwdValidationErrorFiled = By.cssSelector(".validation-errors.new_password_repeated");
     By submitPwdButton = By.xpath("//*[@class='overlay']//button[@type='submit']");
     By pwdChangeConfirmationText = By.xpath("//*[@class='overlay']//*[@class='change-password']/p");
+    String isNewPwdValidationErrorFiledDisplayedByCss = ".validation-errors.new_password";
 
     public AccountSettingsPage(WebDriver driver) {
         super(driver);
@@ -68,7 +69,7 @@ public class AccountSettingsPage extends BasePage {
     }
 
     public boolean isNewPwdValidationErrorFiledDisplayed() {
-        return waitUntilVisible(By.cssSelector(".validation-errors.new_password")).isDisplayed();
+        return waitUntilVisible(By.cssSelector(isNewPwdValidationErrorFiledDisplayedByCss)).isDisplayed();
     }
 
     public String pwdChangeConfirmationText() {

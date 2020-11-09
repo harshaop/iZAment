@@ -10,27 +10,32 @@ import java.util.Properties;
 
 
 public class HomePage extends BasePage {
+    String avatarByCss = "div[class='avatar-wrap']";
     Properties configuration = ReadPropertyFile.getPropertiesFile("configuration.properties");
     Shadow shadow = new Shadow(driver);
+    String userPopUpByCss = ".user-popup";
+    String accountSettingsBtnByCss = ".main-link.account-settings";
+    String referenceElementByCss = ".TitleForVerticalNav-sc-1u1a8z4-1";
 
     public HomePage(WebDriver driver) {
         super(driver);
     }
 
     public WebElement avatar() {
-        return shadow.findElement("div[class='avatar-wrap']");
+        return shadow.findElement(avatarByCss);
     }
 
     public WebElement userPopUp() {
-        return shadow.findElement(".user-popup");
+        return shadow.findElement(userPopUpByCss);
     }
 
     public WebElement accountSettingsButton() {
-        return shadow.findElement(".main-link.account-settings");
+        return shadow.findElement(accountSettingsBtnByCss);
     }
 
     public boolean isPageLoaded() {
-        return waitUntilVisible(By.cssSelector(".TitleForVerticalNav-sc-1u1a8z4-1")).isDisplayed();
-
+        return (waitUntilVisible(By.cssSelector(referenceElementByCss)).isDisplayed()
+                && driver.getCurrentUrl().equals(configuration.getProperty("url")));
     }
+
 }
