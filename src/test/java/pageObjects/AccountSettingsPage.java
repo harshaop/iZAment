@@ -1,19 +1,11 @@
 package pageObjects;
 
-import io.github.sukgu.elements.Element;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 
 public class AccountSettingsPage extends BasePage {
-    public AccountSettingsPage(WebDriver driver) {
-        super(driver);
-    }
-
     By changePwdButton = By.xpath("//*[@href='/settings/change_password']");
     By oldPwdField = By.id("user_password_old_password");
     By newPwdField = By.id("user_password_new_password");
@@ -22,9 +14,12 @@ public class AccountSettingsPage extends BasePage {
     By closeOverlay = By.cssSelector(".close.close-icon");
     By newPwdValidationErrorFiled = By.cssSelector(".validation-errors.new_password");
     By oldPwdValidationErrorFiled = By.cssSelector(".validation-errors.new_password_repeated");
-
     By submitPwdButton = By.xpath("//*[@class='overlay']//button[@type='submit']");
     By pwdChangeConfirmationText = By.xpath("//*[@class='overlay']//*[@class='change-password']/p");
+
+    public AccountSettingsPage(WebDriver driver) {
+        super(driver);
+    }
 
     public void openChangePwdWindow() {
         waitUntilVisible(changePwdButton).click();

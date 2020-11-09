@@ -5,7 +5,7 @@
     <test name="Login">
         <parameter name="browser" value="chrome_mobile"/>
         <classes>
-            <class name="testCases.LoginTest"/>
+            <class name="testCases.LoginTests"/>
             <class name="testCases.HomePageTests"/>
             <class name="testCases.ChangePasswordTest"/>
         </classes>

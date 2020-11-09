@@ -2,12 +2,15 @@ package testCases.base;
 
 import base.WebDriverSession;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 public abstract class BaseTest {
 
-    protected WebDriverSession session;
     protected static WebDriver driver;
+    protected WebDriverSession session;
 
     @Parameters({"browser"})
     @BeforeSuite

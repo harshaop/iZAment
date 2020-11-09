@@ -12,7 +12,7 @@ public class BasePage extends WebDriverSession {
     public static WebDriver driver;
 
     public BasePage(WebDriver driver) {
-      BasePage.driver = driver;
+        BasePage.driver = driver;
     }
 
     protected WebElement waitUntilVisible(By locator) {
