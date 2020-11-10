@@ -47,10 +47,12 @@ public class WebDriverSession {
 
     private void setUpChromeMobileEmulator() {
         WebDriverManager.chromedriver().setup();
-        Map<String, String> mobileEmulation = new HashMap<String, String>();
+        Map<String, String> mobileEmulation = new HashMap<>();
         ChromeOptions chromeOptions = new ChromeOptions();
         mobileEmulation.put("deviceName", "iPhone X");
         chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
+        chromeOptions.addArguments("user-data-dir=C:\\Users\\HarshaOmprakash\\AppData\\Local\\Google\\Chrome\\User Data\\Default");
+
         webDriver = new ChromeDriver(chromeOptions);
     }
 

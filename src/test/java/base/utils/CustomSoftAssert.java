@@ -27,7 +27,7 @@ public class CustomSoftAssert extends SoftAssert {
         try {
             String reportDirectory = new File(System.getProperty("user.dir")).getAbsolutePath() + "/target/surefire-reports";
             File destFile = new File(reportDirectory + "/failure_screenshots/"
-                    + "message" + ex + "_" +
+                    + "Screenshot" + "_" +
                     formatter.format(calendar.getTime()) + ".png");
             FileUtils.copyFile(scrFile, destFile);
         } catch (IOException e) {
