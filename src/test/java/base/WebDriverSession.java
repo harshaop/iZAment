@@ -34,7 +34,7 @@ public class WebDriverSession {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
-        options.addArguments("user-data-dir=C:\\Users\\HarshaOmprakash\\AppData\\Local\\Google\\Chrome\\User Data\\Default");
+    //    options.addArguments("user-data-dir=C:\\Users\\HarshaOmprakash\\AppData\\Local\\Google\\Chrome\\User Data\\Default");
         webDriver = new ChromeDriver(options);
     }
 
@@ -51,7 +51,7 @@ public class WebDriverSession {
         ChromeOptions chromeOptions = new ChromeOptions();
         mobileEmulation.put("deviceName", "iPhone X");
         chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
-        chromeOptions.addArguments("user-data-dir=C:\\Users\\HarshaOmprakash\\AppData\\Local\\Google\\Chrome\\User Data\\Default");
+        //  chromeOptions.addArguments("user-data-dir=C:\\Users\\HarshaOmprakash\\AppData\\Local\\Google\\Chrome\\User Data\\Default");
 
         webDriver = new ChromeDriver(chromeOptions);
     }

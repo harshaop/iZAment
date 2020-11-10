@@ -16,7 +16,7 @@ public class LoginTests extends BaseTest {
 
     @Parameters({"username", "password"})
     @Test
-    public void LoginTest(@Optional("harshaop@gmail.com") String email, @Optional("haop1357") String password) {
+    public void LoginTest(@Optional("harshaop@gmail.com") String email, @Optional("xxxxxx") String password) {
         CustomSoftAssert softAssert = new CustomSoftAssert();
         LoginPage loginPage = new LoginPage(session.getWebDriver());
         loginPage.enterEmailId(email);
