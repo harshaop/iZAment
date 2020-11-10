@@ -1,8 +1,8 @@
 package testCases;
 
+import base.utils.CustomSoftAssert;
 import base.utils.ReadPropertyFile;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 import pageObjects.HomePage;
 import testCases.base.BaseTest;
 
@@ -13,9 +13,8 @@ public class HomePageTests extends BaseTest {
 
     @Test()
     public void navigateToAccountSettings() {
-        SoftAssert softAssert = new SoftAssert();
+        CustomSoftAssert softAssert = new CustomSoftAssert();
         HomePage homePage = new HomePage(driver);
-
         homePage.avatar().click();
         softAssert.assertTrue(homePage.userPopUp().isDisplayed());
         homePage.accountSettingsButton().click();

@@ -13,7 +13,7 @@ public class AccountSettingsPage extends BasePage {
     By changePwdOverlay = By.cssSelector(".overlay");
     By closeOverlay = By.cssSelector(".close.close-icon");
     By newPwdValidationErrorFiled = By.cssSelector(".validation-errors.new_password");
-    By oldPwdValidationErrorFiled = By.cssSelector(".validation-errors.new_password_repeated");
+    By repeatedPwdValidationErrorFiled = By.cssSelector("validation-errors.new_password_repeated");
     By submitPwdButton = By.xpath("//*[@class='overlay']//button[@type='submit']");
     By pwdChangeConfirmationText = By.xpath("//*[@class='overlay']//*[@class='change-password']/p");
     String isNewPwdValidationErrorFiledDisplayedByCss = ".validation-errors.new_password";
@@ -27,15 +27,15 @@ public class AccountSettingsPage extends BasePage {
     }
 
     public boolean isChangePwdOverlayOpen() {
-        return waitUntilVisible(changePwdOverlay).isDisplayed();
+        return driver.findElement(changePwdOverlay).isDisplayed();
     }
 
     public boolean isNewFieldErrorDisplayed() {
         return waitUntilVisible(newPwdValidationErrorFiled).isDisplayed();
     }
 
-    public boolean isOldFieldErrorDisplayed() {
-        return waitUntilVisible(oldPwdValidationErrorFiled).isDisplayed();
+    public boolean isRepeatedNewFieldErrorDisplayed() {
+        return waitUntilVisible(repeatedPwdValidationErrorFiled).isDisplayed();
     }
 
     public boolean isRepeatedFieldErrorDisplayed() {

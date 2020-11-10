@@ -1,8 +1,8 @@
 package testCases;
 
+import base.utils.CustomSoftAssert;
 import base.utils.ReadPropertyFile;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 import pageObjects.AccountSettingsPage;
 import testCases.base.BaseTest;
 
@@ -13,26 +13,26 @@ public class ChangePasswordTest extends BaseTest {
 
     @Test()
     public void changePasswordSuccessfully() {
-        SoftAssert softAssert = new SoftAssert();
+        CustomSoftAssert softAssert = new CustomSoftAssert();
         AccountSettingsPage page = new AccountSettingsPage(driver);
         if (!driver.getCurrentUrl().equals(configuration.getProperty("urlAccountSettings")))
             driver.get(configuration.getProperty("urlAccountSettings"));
 
         page.openChangePwdWindow();
-
         page.oldPwdFiled(configuration.getProperty("password"));
         page.newPwdFiled(configuration.getProperty("password"));
         page.repeatedPwdFiled(configuration.getProperty("password"));
         page.submitPwdSubmitButton().click();
-        softAssert.assertTrue(page.pwdChangeConfirmationText().contains("updated"));
+        softAssert.assertTrue(page.pwdChangeConfirmationText().length() > 10);
 
         page.closeOverlayBtn().click();
-        softAssert.assertTrue(!page.isChangePwdOverlayOpen());
+        softAssert.assertTrue(page.isChangePwdOverlayOpen());
+        softAssert.assertAll();
     }
 
     @Test()
-    public void changePwdErrorValNotMatching() throws InterruptedException {
-        SoftAssert softAssert = new SoftAssert();
+    public void changePwdErrorValNotMatching() {
+        CustomSoftAssert softAssert = new CustomSoftAssert();
         AccountSettingsPage page = new AccountSettingsPage(driver);
         if (!driver.getCurrentUrl().equals(configuration.getProperty("urlAccountSettings")))
             driver.get(configuration.getProperty("urlAccountSettings"));
@@ -42,16 +42,17 @@ public class ChangePasswordTest extends BaseTest {
         page.newPwdFiled("test1234");
         page.repeatedPwdFiled("Test4567");
         page.submitPwdSubmitButton().click();
-        softAssert.assertTrue(page.isNewFieldErrorDisplayed());
-        softAssert.assertTrue(page.isRepeatedFieldErrorDisplayed());
+        softAssert.assertTrue(page.isNewFieldErrorDisplayed(), "Validation Error not displayed under new pwd field");
+        softAssert.assertTrue(page.isRepeatedFieldErrorDisplayed(), "Validation Error not displayed under Old pwd field");
 
         page.closeOverlayBtn().click();
-        softAssert.assertTrue(!page.isChangePwdOverlayOpen());
+        softAssert.assertTrue(page.isChangePwdOverlayOpen());
+        softAssert.assertAll();
     }
 
     @Test()
-    public void changePwdErrorValPwdCriteria() throws InterruptedException {
-        SoftAssert softAssert = new SoftAssert();
+    public void changePwdErrorValPwdCriteria() {
+        CustomSoftAssert softAssert = new CustomSoftAssert();
         AccountSettingsPage page = new AccountSettingsPage(driver);
         if (!driver.getCurrentUrl().equals(configuration.getProperty("urlAccountSettings")))
             driver.get(configuration.getProperty("urlAccountSettings"));
@@ -64,6 +65,7 @@ public class ChangePasswordTest extends BaseTest {
         softAssert.assertTrue(page.isNewFieldErrorDisplayed());
 
         page.closeOverlayBtn().click();
-        softAssert.assertTrue(!page.isChangePwdOverlayOpen());
+        softAssert.assertTrue(page.isChangePwdOverlayOpen());
+        softAssert.assertAll();
     }
 }

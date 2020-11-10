@@ -34,8 +34,7 @@ public class HomePage extends BasePage {
     }
 
     public boolean isPageLoaded() {
-        return (waitUntilVisible(By.cssSelector(referenceElementByCss)).isDisplayed()
-                && driver.getCurrentUrl().equals(configuration.getProperty("url")));
+        return (waitUntilVisible(By.cssSelector(referenceElementByCss)).isDisplayed());
     }
 
 }

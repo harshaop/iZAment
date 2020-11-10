@@ -1,7 +1,7 @@
 package testCases;
 
+import base.utils.CustomSoftAssert;
 import base.utils.ReadPropertyFile;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.HomePage;
 import pageObjects.LoginPage;
@@ -14,15 +14,21 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void LoginTest() throws InterruptedException {
+        CustomSoftAssert softAssert = new CustomSoftAssert();
         LoginPage loginPage = new LoginPage(session.getWebDriver());
-        loginPage.enterEmailId(configuration.getProperty("email"));
+        String email = configuration.getProperty("email");
+        String password = configuration.getProperty("password");
+        loginPage.enterEmailId(email);
         loginPage.clickSubmitBtn();
-        loginPage.enterPassword(configuration.getProperty("password"));
+
+        softAssert.assertEquals(loginPage.getUserNameField(), email);
+        Thread.sleep(500);
+        loginPage.enterPassword(password);
         loginPage.clickSubmitBtn();
+
         HomePage homePage = new HomePage(session.getWebDriver());
-
-        Assert.assertTrue(homePage.isPageLoaded());
+        softAssert.assertTrue(homePage.isPageLoaded());
+        softAssert.assertEquals(driver.getCurrentUrl(), configuration.getProperty("url"));
+        softAssert.assertAll();
     }
-
-
 }
