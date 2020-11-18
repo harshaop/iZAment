@@ -2,6 +2,8 @@ package testCases;
 
 import base.utils.CustomSoftAssert;
 import base.utils.ReadPropertyFile;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.AccountSettingsPage;
 import testCases.base.BaseTest;
@@ -11,17 +13,18 @@ import java.util.Properties;
 public class ChangePasswordTest extends BaseTest {
     Properties configuration = ReadPropertyFile.getPropertiesFile("configuration.properties");
 
+    @Parameters({"password"})
     @Test()
-    public void changePasswordSuccessfully() {
+    public void changePasswordSuccessfully(@Optional("abcd1234") String password) {
         CustomSoftAssert softAssert = new CustomSoftAssert();
         AccountSettingsPage page = new AccountSettingsPage(driver);
         if (!driver.getCurrentUrl().equals(configuration.getProperty("urlAccountSettings")))
             driver.get(configuration.getProperty("urlAccountSettings"));
 
         page.openChangePwdWindow();
-        page.oldPwdFiled(configuration.getProperty("password"));
-        page.newPwdFiled(configuration.getProperty("password"));
-        page.repeatedPwdFiled(configuration.getProperty("password"));
+        page.oldPwdFiled(password);
+        page.newPwdFiled(password);
+        page.repeatedPwdFiled(password);
         page.submitPwdSubmitButton().click();
         softAssert.assertTrue(page.pwdChangeConfirmationText().length() > 10);
 
@@ -30,15 +33,16 @@ public class ChangePasswordTest extends BaseTest {
         softAssert.assertAll();
     }
 
+    @Parameters({"password"})
     @Test()
-    public void changePwdErrorValNotMatching() {
+    public void changePwdErrorValNotMatching(@Optional("abcd1234") String password) {
         CustomSoftAssert softAssert = new CustomSoftAssert();
         AccountSettingsPage page = new AccountSettingsPage(driver);
         if (!driver.getCurrentUrl().equals(configuration.getProperty("urlAccountSettings")))
             driver.get(configuration.getProperty("urlAccountSettings"));
         page.openChangePwdWindow();
 
-        page.oldPwdFiled(configuration.getProperty("password"));
+        page.oldPwdFiled(password);
         page.newPwdFiled("test1234");
         page.repeatedPwdFiled("Test4567");
         page.submitPwdSubmitButton().click();
@@ -50,6 +54,7 @@ public class ChangePasswordTest extends BaseTest {
         softAssert.assertAll();
     }
 
+    @Parameters()
     @Test()
     public void changePwdErrorValPwdCriteria() {
         CustomSoftAssert softAssert = new CustomSoftAssert();

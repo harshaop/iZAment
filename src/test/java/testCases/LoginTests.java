@@ -16,14 +16,15 @@ public class LoginTests extends BaseTest {
 
     @Parameters({"username", "password"})
     @Test
-    public void LoginTest(@Optional("harshaop@gmail.com") String email, @Optional("xxxxxx") String password) {
+    public void LoginTest(@Optional("gussund1911@gmail.com") String email, @Optional("haop1350") String password) {
         CustomSoftAssert softAssert = new CustomSoftAssert();
         LoginPage loginPage = new LoginPage(session.getWebDriver());
         loginPage.enterEmailId(email);
         loginPage.clickSubmitBtn();
 
-        softAssert.assertEquals(loginPage.getUserNameField().contains(email), email);
+        softAssert.assertTrue(loginPage.getUserNameField().contains(email));
         loginPage.enterPassword(password);
+        mv
         loginPage.clickSubmitBtn();
 
         HomePage homePage = new HomePage(session.getWebDriver());

@@ -4,8 +4,8 @@
 
     <test name="Login and Change Password Flow - Mobile">
         <parameter name="browser" value="chrome_mobile"/>
-        <parameter name="username" value="harshaop@gmail.com"/>
-        <parameter name="password" value="xxxxxx"/>
+        <parameter name="username" value="gussund1911@gmail.com"/>
+        <parameter name="password" value="haop1350"/>
         <classes>
             <class name="testCases.LoginTests"/>
             <class name="testCases.HomePageTests"/>

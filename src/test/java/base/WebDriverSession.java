@@ -2,15 +2,11 @@ package base;
 
 import base.utils.ReadPropertyFile;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +30,7 @@ public class WebDriverSession {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
-    //    options.addArguments("user-data-dir=C:\\Users\\HarshaOmprakash\\AppData\\Local\\Google\\Chrome\\User Data\\Default");
+        options.addArguments("user-data-dir=C:\\Users\\HarshaOmprakash\\AppData\\Local\\Google\\Chrome\\User Data\\Default");
         webDriver = new ChromeDriver(options);
     }
 
@@ -51,7 +47,7 @@ public class WebDriverSession {
         ChromeOptions chromeOptions = new ChromeOptions();
         mobileEmulation.put("deviceName", "iPhone X");
         chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
-        //  chromeOptions.addArguments("user-data-dir=C:\\Users\\HarshaOmprakash\\AppData\\Local\\Google\\Chrome\\User Data\\Default");
+        chromeOptions.addArguments("user-data-dir=C:\\Users\\HarshaOmprakash\\AppData\\Local\\Google\\Chrome\\User Data\\Default");
 
         webDriver = new ChromeDriver(chromeOptions);
     }
@@ -86,13 +82,4 @@ public class WebDriverSession {
         return webDriver;
     }
 
-    protected WebElement waitUntilVisible(By locator) {
-        WebDriverWait wait = new WebDriverWait(webDriver, 10);
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
-
-    protected WebElement waitUntilClickable(By locator) {
-        WebDriverWait wait = new WebDriverWait(webDriver, 10);
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
 }

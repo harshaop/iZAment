@@ -2,8 +2,8 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name=" Test Suite">
 
-    <parameter name="username" value="harshaop@gmail.com"/>
-    <parameter name="password" value="xxxxxx"/>
+    <parameter name="username" value="gussund1911@gmail.com"/>
+    <parameter name="password" value="haop1350"/>
 
     <test name="Login and Change Password Flow - Desktop">
         <parameter name="browser" value="chrome"/>
@@ -17,7 +17,6 @@
 
     <test name="Login and Change Password Flow - Mobile">
         <parameter name="browser" value="chrome_mobile"/>
-
         <classes>
             <class name="testCases.LoginTests"/>
             <class name="testCases.HomePageTests"/>
